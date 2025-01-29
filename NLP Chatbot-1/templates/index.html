@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Details Lookup</h1>
+        <form method="POST">
+            <label for="student_id">Enter Student ID:</label>
+            <input type="text" id="student_id" name="student_id" placeholder="e.g., 1" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if student_details %}
+            <div class="results">
+                {% if student_details == "Student ID not found." %}
+                    <p>{{ student_details }}</p>
+                {% else %}
+                    <h2>Details:</h2>
+                    <ul>
+                        {% for key, value in student_details[0].items() %}
+                            <li><strong>{{ key }}:</strong> {{ value }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
